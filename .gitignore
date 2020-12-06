@@ -5,3 +5,4 @@ node_modules
 .eslintcache
 *.iml
 *.pyc
+build/

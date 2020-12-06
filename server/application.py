@@ -2,11 +2,16 @@ from flask import Flask, request
 from flask_cors import CORS
 from markov import Markov
 
-app = Flask(__name__)
-CORS(app, supports_credentials=True)
+application = Flask(__name__)
+CORS(application, supports_credentials=True)
 
 
-@app.route('/evaluate/<input_string>', methods=['POST'])
+@application.route('/')
+def index():
+    return 'Hi'
+
+
+@application.route('/markov/evaluate/<input_string>', methods=['POST'])
 def hello_world(input_string):
     rules = {}
     for key, value in request.form.items():
@@ -19,3 +24,7 @@ def hello_world(input_string):
     return {
         'result': result
     }
+
+
+if __name__ == "__main__":
+    application.run(port=80, debug=False)
